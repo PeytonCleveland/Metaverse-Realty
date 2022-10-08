@@ -378,7 +378,7 @@ const server = new ApolloServer({
 await server.start();
 
 app.use(
-  "/graphql",
+  "/",
   cors(),
   bodyParser.json(),
   expressMiddleware(server, {
@@ -392,6 +392,13 @@ app.use(
   })
 );
 
-await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+const url =
+  process.env.NODE_ENV === "production"
+    ? "https://metaverse-realty.herokuapp.com/"
+    : "http://localhost:4000";
 
-console.log(`🚀 Server ready at http://localhost:4000/graphql`);
+const port = process.env.PORT || 4000;
+
+await new Promise((resolve) => httpServer.listen({ port: port }, resolve));
+
+console.log(`🚀 Server ready at ${url}`);
