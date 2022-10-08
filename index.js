@@ -372,6 +372,7 @@ const server = new ApolloServer({
     mocks,
     preserveResolvers: true,
   }),
+  introspection: true,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 
