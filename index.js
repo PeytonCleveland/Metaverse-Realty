@@ -92,6 +92,7 @@ const typeDefs = `#graphql
         email: String
     }
 
+    "A sale of a property from one wallet to another"
     type Sale {
         "The unique ID of the transaction"
         id: ID!
@@ -133,6 +134,7 @@ const typeDefs = `#graphql
         description: String
     }
 
+    "An empty piece of land in the metaverse"
     type Land implements Property {
         "The property's unique identifier"
         id: ID!
@@ -158,6 +160,7 @@ const typeDefs = `#graphql
         description: String
     }
 
+    "A house in the metaverse"
     type House implements Property {
         "The property's unique identifier"
         id: ID!
@@ -191,6 +194,7 @@ const typeDefs = `#graphql
         baths: Float!
     }
 
+    "An apartment unit within an apartment in the metaverse"
     type ApartmentUnit {
         "The units's unique identifier"
         id: ID!
@@ -220,6 +224,7 @@ const typeDefs = `#graphql
         penthouse: Boolean!
     }
 
+    "An apartment building within the metaverse"
     type Apartment implements Property {
         "The property's unique identifier"
         id: ID!
@@ -251,6 +256,7 @@ const typeDefs = `#graphql
         units: [ApartmentUnit!]!
     }
 
+    "The response type for updating a user's information"
     type UserMutationResponse implements MutationResponse {
          "The status code of the mutation"
          code: String!
@@ -262,6 +268,7 @@ const typeDefs = `#graphql
         user: User
     }
 
+    "The response type for selling a property"
     type SalePropertyMutationResponse implements MutationResponse {
         "The status code of the mutation"
         code: String!
@@ -273,6 +280,7 @@ const typeDefs = `#graphql
         property: Property
     }
 
+    "The response type for rezoning a property"
     type RezonePropertyMutationResponse implements MutationResponse {
         "The status code of the mutation"
         code: String!
