@@ -1,6 +1,10 @@
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import {
+  ApolloServerPluginLandingPageProductionDefault,
+  ApolloServerPluginLandingPageLocalDefault,
+} from "@apollo/server/plugin/landingPage/default";
 import cors from "cors";
 import http from "http";
 import bodyParser from "body-parser";
@@ -373,7 +377,12 @@ const server = new ApolloServer({
     preserveResolvers: true,
   }),
   introspection: true,
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  plugins: [
+    ApolloServerPluginDrainHttpServer({ httpServer }),
+    process.env.NODE_ENV === "production"
+      ? ApolloServerPluginLandingPageProductionDefault({ embed: true })
+      : ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+  ],
 });
 
 await server.start();
